@@ -1,140 +1,939 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ICHIGO — Ticket Step 2</title><style>
+```html
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ICHIGO — Ticket Step 2</title>
+
+<style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@600;700&display=swap');
-:root{--ink:#102b20;--cream:#f5f0ce;--green:#0e6b3e;--lime:#a8d95b;--orange:#e86f2e;--paper:#fffdf0}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--cream);background:#071711;font-family:"DM Mono",monospace}
-body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 15% 15%,#195d3c 0 2px,transparent 3px),radial-gradient(circle at 85% 70%,#2d7548 0 3px,transparent 4px),linear-gradient(125deg,#092118,#0b3324 48%,#06140f);background-size:140px 140px,180px 180px,auto}
-body:after{content:"";position:fixed;inset:-20%;z-index:-1;opacity:.13;background-image:repeating-linear-gradient(115deg,transparent 0 28px,#b4d873 29px 31px,transparent 32px 65px);transform:rotate(-8deg);pointer-events:none}
-.wrap{max-width:1050px;margin:auto;padding:22px}.nav{display:flex;justify-content:space-between;align-items:center}.logo{font-size:13px;letter-spacing:.12em}.mini{border:1px solid #a8d95b66;padding:9px 13px;border-radius:999px;font-size:11px;text-decoration:none}
-.hero{min-height:78vh;display:grid;grid-template-columns:1fr .78fr;align-items:center;gap:40px;padding:45px 0}.kicker{color:var(--orange);font-size:12px;letter-spacing:.14em}h1{font-family:"Shippori Mincho",serif;font-size:clamp(70px,12vw,145px);line-height:.78;letter-spacing:-.08em;margin:18px 0;color:var(--cream)}h1 span{display:block;color:var(--lime);font-size:.38em;letter-spacing:.03em;margin-top:25px}.copy{font-size:13px;line-height:1.9}.copy b{color:var(--lime)}.flyer{background:#111;padding:9px;transform:rotate(2deg);box-shadow:12px 15px #0008}.flyer img{width:100%;display:block}
-.cta{display:inline-block;margin-top:28px;padding:18px 24px;background:var(--orange);color:white;text-decoration:none;font-weight:bold;box-shadow:6px 6px var(--ink);transition:.15s}.cta:hover{transform:translate(3px,3px);box-shadow:2px 2px var(--ink)}
-.band{border-block:1px solid #a8d95b44;padding:12px;color:var(--lime);font-size:11px;overflow:hidden;white-space:nowrap}.band span{display:inline-block;animation:marq 18s linear infinite}@keyframes marq{to{transform:translateX(-50%)}}
-.panel{max-width:760px;margin:45px auto 100px;background:var(--cream);color:var(--ink);padding:44px 24px;clip-path:polygon(0 2%,100% 0,100% 98%,0 100%)}.inner{max-width:650px;margin:auto}.eyebrow{font-size:11px;color:var(--orange);font-weight:bold}.panel h2{font-family:"Shippori Mincho",serif;font-size:clamp(38px,7vw,66px);line-height:1;margin:9px 0 28px}.box{background:var(--paper);border:2px solid var(--ink);padding:25px;box-shadow:8px 8px var(--ink)}
-label{display:block;font-size:11px;font-weight:bold;margin:17px 0 7px}input,select,textarea{width:100%;padding:13px;border:1px solid #7a877e;background:white;font:inherit;color:var(--ink);border-radius:3px}textarea{min-height:130px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}.choice{display:flex;flex-wrap:wrap;gap:8px}.choice label{margin:0;border:1px solid #7a877e;padding:12px 13px;background:var(--paper);cursor:pointer}.choice input{width:auto}.choice label:has(input:checked){background:var(--green);color:var(--cream);border-color:var(--green)}
-.note{font-size:10px;line-height:1.75;opacity:.7;margin-top:18px}.next{width:100%;margin-top:24px;border:0;padding:17px;background:var(--orange);color:white;font:700 14px "DM Mono",monospace;cursor:pointer;box-shadow:5px 5px var(--ink)}.next:hover{transform:translate(3px,3px);box-shadow:2px 2px var(--ink)}
-.steps{font-size:10px;color:#657168;margin-bottom:20px}.summary{background:#102b20;color:var(--cream);padding:16px;line-height:1.8;font-size:11px}.summary b{color:var(--lime)}footer{text-align:center;font-size:10px;opacity:.65;padding:20px 0 70px}
-@media(max-width:720px){.hero{grid-template-columns:1fr;padding-top:35px}.flyer{max-width:500px;margin:auto}.row{grid-template-columns:1fr}.panel{margin-inline:-2px}}
 
-.joke{margin-top:16px;padding:14px 15px;border:1px dashed var(--orange);background:#fff4df;color:#7a381e;font-size:11px;line-height:1.8;transform:rotate(-1deg)}
-.joke strong{font-size:14px}.celebrate{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:10}
-.fruit{position:absolute;left:var(--x);top:110%;font-size:var(--size);filter:drop-shadow(0 6px 4px #0004);animation:fruitUp var(--dur) cubic-bezier(.2,.8,.2,1) forwards;animation-delay:var(--delay);transform:rotate(var(--rot))}
-@keyframes fruitUp{0%{transform:translateY(0) rotate(var(--rot)) scale(.3);opacity:0}12%{opacity:1}75%{opacity:1}100%{transform:translateY(-125vh) rotate(calc(var(--rot) + 260deg)) scale(1.15);opacity:0}}
-.success-card{position:relative;z-index:20;text-align:center;background:#fffdf0;color:var(--ink);border:2px solid var(--ink);box-shadow:8px 8px var(--ink);padding:28px 20px;max-width:520px;margin:25px auto}
-.success-card h3{font-family:"Shippori Mincho",serif;font-size:46px;line-height:1;margin:0 0 14px}
-@media(max-width:720px){.choice .satsuki-choice:after{position:static;display:block;margin-top:5px}}
+:root{
+  --ink:#102b20;
+  --cream:#f5f0ce;
+  --green:#0e6b3e;
+  --lime:#a8d95b;
+  --orange:#e86f2e;
+  --paper:#fffdf0;
+}
 
-.punk-finale{position:fixed;inset:0;z-index:100;background:#050806;display:flex;align-items:center;justify-content:center;overflow:hidden;opacity:0;pointer-events:none;transition:opacity .15s}
-.punk-finale.show{opacity:1;pointer-events:auto}
-.punk-noise{position:absolute;inset:-50%;background:repeating-linear-gradient(0deg,transparent 0 3px,#fff1 4px 5px);mix-blend-mode:screen;animation:noise .08s steps(2) infinite}
-.punk-red{position:absolute;inset:0;background:radial-gradient(circle,#e86f2e44 0%,transparent 48%);animation:pulse .35s infinite alternate}
-.punk-text{position:relative;text-align:center;color:#f5f0ce;transform:rotate(-3deg);animation:slam .7s cubic-bezier(.15,1.5,.3,1) forwards}
-.punk-text .tiny{font-size:11px;letter-spacing:.35em;color:#a8d95b;margin-bottom:15px}
-.punk-text .main{font-family:"Shippori Mincho",serif;font-weight:700;font-size:clamp(48px,10vw,120px);line-height:.82;letter-spacing:-.08em;text-shadow:7px 7px 0 #e86f2e,-3px -2px 0 #0e6b3e}
-.punk-text .sub{margin-top:25px;font-size:12px;letter-spacing:.2em;color:#fff}
-.punk-close{margin-top:28px;border:1px solid #f5f0ce;background:transparent;color:#f5f0ce;padding:11px 17px;font:inherit;font-size:11px;cursor:pointer}
-@keyframes slam{0%{transform:scale(5) rotate(-12deg);opacity:0;filter:blur(8px)}55%{transform:scale(.92) rotate(2deg);opacity:1}100%{transform:scale(1) rotate(-3deg);opacity:1}}
-@keyframes noise{0%{transform:translate(2%,1%)}50%{transform:translate(-1%,-2%)}100%{transform:translate(1%,2%)}}
-@keyframes pulse{from{opacity:.35}to{opacity:.75}}
+*{box-sizing:border-box}
 
-.oshi-choice{position:relative;transition:.12s}
-.oshi-choice input{accent-color:var(--green)}
-.oshi-choice.himeca-picked{background:#e8e4bc!important;color:var(--ink)!important;border-color:#7a877e!important}
-.oshi-choice.himeca-picked:after{content:"○";font-size:18px;margin-left:7px;vertical-align:-2px}
-.oshi-choice.satsuki-picked{background:var(--green)!important;color:var(--cream)!important;border-color:var(--green)!important}
-.oshi-choice.satsuki-picked:after{content:"✓";font-size:18px;margin-left:7px;vertical-align:-2px;font-weight:bold}
-.oshi-glitch{animation:oshiGlitch .22s steps(2) 2}
-@keyframes oshiGlitch{0%{transform:translateX(0)}25%{transform:translateX(-3px) rotate(-1deg)}50%{transform:translateX(3px) rotate(1deg)}75%{transform:translateX(-2px)}100%{transform:translateX(0)}}
-</style></head><body><div class="wrap">
-<header class="nav"><div class="logo">ICHIGO / MESSAGE & VOTE</div><a class="mini" href="reserve.html">← 戻る</a></header>
-<section class="panel"><div class="inner">
-<div class="steps">STEP 2 / 2　✓ YOUR INFO　● MESSAGE & VOTE</div>
-<div class="eyebrow">ONE LAST THING</div><h2>最後に、<br>声を聞かせて。</h2>
-<div class="box"><form id="messageForm">
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  color:var(--cream);
+  background:#071711;
+  font-family:"DM Mono",monospace;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    radial-gradient(circle at 15% 15%,#195d3c 0 2px,transparent 3px),
+    radial-gradient(circle at 85% 70%,#2d7548 0 3px,transparent 4px),
+    linear-gradient(125deg,#092118,#0b3324 48%,#06140f);
+  background-size:140px 140px,180px 180px,auto;
+}
+
+body:after{
+  content:"";
+  position:fixed;
+  inset:-20%;
+  z-index:-1;
+  opacity:.13;
+  background-image:
+    repeating-linear-gradient(
+      115deg,
+      transparent 0 28px,
+      #b4d873 29px 31px,
+      transparent 32px 65px
+    );
+  transform:rotate(-8deg);
+  pointer-events:none;
+}
+
+.wrap{
+  max-width:1050px;
+  margin:auto;
+  padding:22px;
+}
+
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:13px;
+  letter-spacing:.12em;
+}
+
+.mini{
+  border:1px solid #a8d95b66;
+  padding:9px 13px;
+  border-radius:999px;
+  font-size:11px;
+  text-decoration:none;
+  color:var(--cream);
+}
+
+.hero{
+  min-height:78vh;
+  display:grid;
+  grid-template-columns:1fr .78fr;
+  align-items:center;
+  gap:40px;
+  padding:45px 0;
+}
+
+.kicker{
+  color:var(--orange);
+  font-size:12px;
+  letter-spacing:.14em;
+}
+
+h1{
+  font-family:"Shippori Mincho",serif;
+  font-size:clamp(70px,12vw,145px);
+  line-height:.78;
+  letter-spacing:-.08em;
+  margin:18px 0;
+  color:var(--cream);
+}
+
+h1 span{
+  display:block;
+  color:var(--lime);
+  font-size:.38em;
+  letter-spacing:.03em;
+  margin-top:25px;
+}
+
+.copy{
+  font-size:13px;
+  line-height:1.9;
+}
+
+.copy b{color:var(--lime)}
+
+.flyer{
+  background:#111;
+  padding:9px;
+  transform:rotate(2deg);
+  box-shadow:12px 15px #0008;
+}
+
+.flyer img{
+  width:100%;
+  display:block;
+}
+
+.cta{
+  display:inline-block;
+  margin-top:28px;
+  padding:18px 24px;
+  background:var(--orange);
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:6px 6px var(--ink);
+  transition:.15s;
+}
+
+.cta:hover{
+  transform:translate(3px,3px);
+  box-shadow:2px 2px var(--ink);
+}
+
+.band{
+  border-block:1px solid #a8d95b44;
+  padding:12px;
+  color:var(--lime);
+  font-size:11px;
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+.band span{
+  display:inline-block;
+  animation:marq 18s linear infinite;
+}
+
+@keyframes marq{
+  to{transform:translateX(-50%)}
+}
+
+.panel{
+  max-width:760px;
+  margin:45px auto 100px;
+  background:var(--cream);
+  color:var(--ink);
+  padding:44px 24px;
+  clip-path:polygon(0 2%,100% 0,100% 98%,0 100%);
+}
+
+.inner{
+  max-width:650px;
+  margin:auto;
+}
+
+.eyebrow{
+  font-size:11px;
+  color:var(--orange);
+  font-weight:bold;
+}
+
+.panel h2{
+  font-family:"Shippori Mincho",serif;
+  font-size:clamp(38px,7vw,66px);
+  line-height:1;
+  margin:9px 0 28px;
+}
+
+.box{
+  background:var(--paper);
+  border:2px solid var(--ink);
+  padding:25px;
+  box-shadow:8px 8px var(--ink);
+}
+
+label{
+  display:block;
+  font-size:11px;
+  font-weight:bold;
+  margin:17px 0 7px;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:13px;
+  border:1px solid #7a877e;
+  background:white;
+  font:inherit;
+  color:var(--ink);
+  border-radius:3px;
+}
+
+textarea{
+  min-height:130px;
+  resize:vertical;
+}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.choice{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.choice label{
+  margin:0;
+  border:1px solid #7a877e;
+  padding:12px 13px;
+  background:var(--paper);
+  cursor:pointer;
+  transition:.12s;
+}
+
+.choice input{
+  width:auto;
+}
+
+.choice label:has(input:checked){
+  background:var(--green);
+  color:var(--cream);
+  border-color:var(--green);
+}
+
+.oshi-choice{
+  position:relative;
+  transition:.12s;
+}
+
+.oshi-choice input{
+  accent-color:var(--green);
+}
+
+.oshi-choice.himeca-picked{
+  background:var(--green)!important;
+  color:var(--cream)!important;
+  border-color:var(--green)!important;
+}
+
+.oshi-choice.satsuki-picked{
+  background:var(--green)!important;
+  color:var(--cream)!important;
+  border-color:var(--green)!important;
+}
+
+.oshi-choice.himeca-picked:after{
+  content:"✓";
+  font-size:18px;
+  margin-left:7px;
+  vertical-align:-2px;
+  font-weight:bold;
+}
+
+.oshi-choice.satsuki-picked:after{
+  content:"✓";
+  font-size:18px;
+  margin-left:7px;
+  vertical-align:-2px;
+  font-weight:bold;
+}
+
+.oshi-glitch{
+  animation:oshiGlitch .22s steps(2) 2;
+}
+
+@keyframes oshiGlitch{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-3px) rotate(-1deg)}
+  50%{transform:translateX(3px) rotate(1deg)}
+  75%{transform:translateX(-2px)}
+  100%{transform:translateX(0)}
+}
+
+.note{
+  font-size:10px;
+  line-height:1.75;
+  opacity:.7;
+  margin-top:18px;
+}
+
+.next{
+  width:100%;
+  margin-top:24px;
+  border:0;
+  padding:17px;
+  background:var(--orange);
+  color:white;
+  font:700 14px "DM Mono",monospace;
+  cursor:pointer;
+  box-shadow:5px 5px var(--ink);
+}
+
+.next:hover{
+  transform:translate(3px,3px);
+  box-shadow:2px 2px var(--ink);
+}
+
+.steps{
+  font-size:10px;
+  color:#657168;
+  margin-bottom:20px;
+}
+
+.summary{
+  background:#102b20;
+  color:var(--cream);
+  padding:16px;
+  line-height:1.8;
+  font-size:11px;
+}
+
+.summary b{
+  color:var(--lime);
+}
+
+footer{
+  text-align:center;
+  font-size:10px;
+  opacity:.65;
+  padding:20px 0 70px;
+}
+
+.joke{
+  margin-top:16px;
+  padding:14px 15px;
+  border:1px dashed var(--orange);
+  background:#fff4df;
+  color:#7a381e;
+  font-size:11px;
+  line-height:1.8;
+  transform:rotate(-1deg);
+}
+
+.joke strong{
+  font-size:14px;
+}
+
+.celebrate{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:10;
+}
+
+.fruit{
+  position:absolute;
+  left:var(--x);
+  top:110%;
+  font-size:var(--size);
+  filter:drop-shadow(0 6px 4px #0004);
+  animation:fruitUp var(--dur) cubic-bezier(.2,.8,.2,1) forwards;
+  animation-delay:var(--delay);
+  transform:rotate(var(--rot));
+}
+
+@keyframes fruitUp{
+  0%{
+    transform:translateY(0) rotate(var(--rot)) scale(.3);
+    opacity:0;
+  }
+  12%{opacity:1}
+  75%{opacity:1}
+  100%{
+    transform:
+      translateY(-125vh)
+      rotate(calc(var(--rot) + 260deg))
+      scale(1.15);
+    opacity:0;
+  }
+}
+
+.success-card{
+  position:relative;
+  z-index:20;
+  text-align:center;
+  background:#fffdf0;
+  color:var(--ink);
+  border:2px solid var(--ink);
+  box-shadow:8px 8px var(--ink);
+  padding:28px 20px;
+  max-width:520px;
+  margin:25px auto;
+}
+
+.success-card h3{
+  font-family:"Shippori Mincho",serif;
+  font-size:46px;
+  line-height:1;
+  margin:0 0 14px;
+}
+
+.punk-finale{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:#050806;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .15s;
+}
+
+.punk-finale.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.punk-noise{
+  position:absolute;
+  inset:-50%;
+  background:repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    #fff1 4px 5px
+  );
+  mix-blend-mode:screen;
+  animation:noise .08s steps(2) infinite;
+}
+
+.punk-red{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(
+    circle,
+    #e86f2e44 0%,
+    transparent 48%
+  );
+  animation:pulse .35s infinite alternate;
+}
+
+.punk-text{
+  position:relative;
+  text-align:center;
+  color:#f5f0ce;
+  transform:rotate(-3deg);
+  animation:slam .7s cubic-bezier(.15,1.5,.3,1) forwards;
+}
+
+.punk-text .tiny{
+  font-size:11px;
+  letter-spacing:.35em;
+  color:#a8d95b;
+  margin-bottom:15px;
+}
+
+.punk-text .main{
+  font-family:"Shippori Mincho",serif;
+  font-weight:700;
+  font-size:clamp(48px,10vw,120px);
+  line-height:.82;
+  letter-spacing:-.08em;
+  text-shadow:
+    7px 7px 0 #e86f2e,
+    -3px -2px 0 #0e6b3e;
+}
+
+.punk-text .sub{
+  margin-top:25px;
+  font-size:12px;
+  letter-spacing:.2em;
+  color:#fff;
+}
+
+.punk-close{
+  margin-top:28px;
+  border:1px solid #f5f0ce;
+  background:transparent;
+  color:#f5f0ce;
+  padding:11px 17px;
+  font:inherit;
+  font-size:11px;
+  cursor:pointer;
+}
+
+@keyframes slam{
+  0%{
+    transform:scale(5) rotate(-12deg);
+    opacity:0;
+    filter:blur(8px);
+  }
+  55%{
+    transform:scale(.92) rotate(2deg);
+    opacity:1;
+  }
+  100%{
+    transform:scale(1) rotate(-3deg);
+    opacity:1;
+  }
+}
+
+@keyframes noise{
+  0%{transform:translate(2%,1%)}
+  50%{transform:translate(-1%,-2%)}
+  100%{transform:translate(1%,2%)}
+}
+
+@keyframes pulse{
+  from{opacity:.35}
+  to{opacity:.75}
+}
+
+@media(max-width:720px){
+  .hero{
+    grid-template-columns:1fr;
+    padding-top:35px;
+  }
+
+  .flyer{
+    max-width:500px;
+    margin:auto;
+  }
+
+  .row{
+    grid-template-columns:1fr;
+  }
+
+  .panel{
+    margin-inline:-2px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<header class="nav">
+  <div class="logo">ICHIGO / MESSAGE & VOTE</div>
+  <a class="mini" href="reserve.html">← 戻る</a>
+</header>
+
+<section class="panel">
+<div class="inner">
+
+<div class="steps">
+  STEP 2 / 2　✓ YOUR INFO　● MESSAGE & VOTE
+</div>
+
+<div class="eyebrow">ONE LAST THING</div>
+
+<h2>
+  最後に、<br>
+  声を聞かせて。
+</h2>
+
+<div class="box">
+
+<form id="messageForm">
+
 <label>MESSAGE / 応援メッセージ</label>
-<textarea id="message" placeholder="ICHIGOへのひとこと、9/21に楽しみにしていることなど。"></textarea>
+
+<textarea
+  id="message"
+  placeholder="ICHIGOへのひとこと、9/21に楽しみにしていることなど。"
+></textarea>
+
 <label>WHO'S YOUR OSHI? / 推しはどっち？ *</label>
+
 <div class="choice" id="oshiChoices">
-<label class="oshi-choice"><input type="radio" name="oshi" value="HimeCa" required> HimeCa 🍓</label>
-<label class="oshi-choice"><input type="radio" name="oshi" value="SATSUKI"> SATSUKI 🍓</label>
+
+<label class="oshi-choice">
+  <input type="radio" name="oshi" value="HimeCa" required>
+  HimeCa 🍓
+</label>
+
+<label class="oshi-choice">
+  <input type="radio" name="oshi" value="SATSUKI">
+  SATSUKI 🍓
+</label>
+
 </div>
-<div class="summary" style="margin-top:20px">🔒 <b>推し投票は匿名です</b><br>
-予約者の名前・年齢などとは紐づけず、HimeCa / SATSUKI の票数だけを集計します。</div>
-<button class="next" type="submit">🍓 取り置きを完了する</button>
-<p class="note">送信すると、予約情報は指定したメールアドレスへ通知され、推し投票は匿名集計用に別送されます。</p>
+
+<div class="summary" style="margin-top:20px">
+  🔒 <b>推し投票は匿名です</b><br>
+  予約者の名前・年齢などとは紐づけず、
+  HimeCa / SATSUKI の票数だけを集計します。
+</div>
+
+<button class="next" type="submit">
+  🍓 取り置きを完了する
+</button>
+
+<p class="note">
+  送信すると、予約情報は指定したメールアドレスへ通知され、
+  推し投票は匿名集計用に別送されます。
+</p>
+
 </form>
+
 <div id="done" style="display:none">
+
 <div class="celebrate" id="fruits"></div>
+
 <div class="success-card">
+
 <h3>SEE YOU 9.21. 🍓</h3>
-<p>取り置きありがとう！<br>当日は受付でお名前を伝えてください。</p>
-<div class="joke">SATSUKIへの一票、確かに受け取りました。<br>🍓 🍊 🍋 🍉 🍇 🍒</div>
+
+<p>
+  取り置きありがとう！<br>
+  当日は受付でお名前を伝えてください。
+</p>
+
+<div class="joke" id="voteMessage">
+  🍓 投票ありがとう！
+</div>
+
+</div>
+
+</div>
+
 </div>
 </div>
-</div></div></section>
+</section>
+
 <div class="punk-finale" id="punkFinale" aria-hidden="true">
-  <div class="punk-noise"></div><div class="punk-red"></div>
+
+  <div class="punk-noise"></div>
+  <div class="punk-red"></div>
+
   <div class="punk-text">
-    <div class="tiny">THANK YOU FOR JOINING US</div>
-    <div class="main">ICHIGO IS<br>WAITING FOR YOU.</div>
-    <div class="sub">2026.09.21 / KORIYAMA #9</div>
-    <button class="punk-close" onclick="document.getElementById('punkFinale').classList.remove('show')">BACK TO THE FRUITS</button>
+
+    <div class="tiny">
+      THANK YOU FOR JOINING US
+    </div>
+
+    <div class="main">
+      ICHIGO IS<br>
+      WAITING FOR YOU.
+    </div>
+
+    <div class="sub">
+      2026.09.21 / KORIYAMA #9
+    </div>
+
+    <button
+      class="punk-close"
+      onclick="document.getElementById('punkFinale').classList.remove('show')"
+    >
+      BACK TO THE FRUITS
+    </button>
+
   </div>
+
 </div>
-<footer>ICHIGO / BASIL SEED GARDEN / KORIYAMA #9</footer>
-</div><script>
-const ENDPOINT="https://script.google.com/macros/s/AKfycbzizZXYBCVgBvCql9goGOaFayTMsikwjH5wYkgBy-OVPaSydP7Zo9-PXVL5xbyuzlpjKA/exec"; // Google Apps Script のWebアプリURLをここに入れる
+
+<footer>
+  ICHIGO / BASIL SEED GARDEN / KORIYAMA #9
+</footer>
+
+</div>
+
+<script>
+
+const ENDPOINT="https://script.google.com/macros/s/AKfycbzizZXYBCVgBvCql9goGOaFayTMsikwjH5wYkgBy-OVPaSydP7Zo9-PXVL5xbyuzlpjKA/exec";
+
+
+/* ================================
+   推し選択
+================================ */
 
 const choices=document.querySelectorAll('.oshi-choice');
+
 choices.forEach(label=>{
+
   const input=label.querySelector('input');
-  label.addEventListener('click', ev=>{
+
+  label.addEventListener('click',()=>{
+
+    choices.forEach(x=>{
+      x.classList.remove(
+        'satsuki-picked',
+        'himeca-picked'
+      );
+    });
+
+    input.checked=true;
+
     if(input.value==='HimeCa'){
-      ev.preventDefault();
-      choices.forEach(x=>x.classList.remove('satsuki-picked','himeca-picked'));
-      label.classList.add('himeca-picked','oshi-glitch');
-      setTimeout(()=>label.classList.remove('himeca-picked','oshi-glitch'),420);
-      document.querySelector('input[name="oshi"][value="SATSUKI"]').checked=true;
-      document.querySelector('.satsuki-choice')?.classList.add('satsuki-picked');
-      setTimeout(()=>document.querySelector('.satsuki-choice')?.classList.remove('satsuki-picked'),700);
+
+      label.classList.add(
+        'himeca-picked',
+        'oshi-glitch'
+      );
+
+      setTimeout(()=>{
+        label.classList.remove('oshi-glitch');
+      },420);
+
     }else{
-      choices.forEach(x=>x.classList.remove('satsuki-picked','himeca-picked'));
-      input.checked=true;
+
       label.classList.add('satsuki-picked');
+
     }
+
   });
+
 });
 
-const data=JSON.parse(sessionStorage.getItem('ichigoReservation')||'null');
-if(!data){location.href='reserve.html';}
-document.getElementById('messageForm').addEventListener('submit',async e=>{
- e.preventDefault();
- const oshi=document.querySelector('input[name="oshi"]:checked').value;
- const payload={reservation:data,message:document.getElementById('message').value,oshi};
- console.log("ICHIGO POST START", ENDPOINT, payload);
- const btn=e.target.querySelector('button');btn.disabled=true;btn.textContent='送信中…';
- try{
-   if(ENDPOINT){
-     const res=await fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
-   } else {
-     console.log('DEMO PAYLOAD',payload);
-   }
-   e.target.style.display='none';document.getElementById('done').style.display='block';
-   const fruits=['🍓','🍊','🍋','🍉','🍇','🍎','🍑','🍒','🍍','🥝','🫐','🍈'];
-   const box=document.getElementById('fruits');
-   for(let i=0;i<55;i++){
-     const el=document.createElement('span'); el.className='fruit'; el.textContent=fruits[i%fruits.length];
-     el.style.setProperty('--x',(Math.random()*100)+'%');
-     el.style.setProperty('--size',(24+Math.random()*42)+'px');
-     el.style.setProperty('--dur',(2.8+Math.random()*3.8)+'s');
-     el.style.setProperty('--delay',(Math.random()*1.4)+'s');
-     el.style.setProperty('--rot',(-45+Math.random()*90)+'deg');
-     box.appendChild(el);
-   }
-   sessionStorage.removeItem('ichigoReservation');
-   setTimeout(()=>{
-     const finale=document.getElementById('punkFinale');
-     finale.classList.add('show');
-     finale.setAttribute('aria-hidden','false');
-   },2300);
- }catch(err){alert('送信できませんでした。もう一度お試しください。');btn.disabled=false;btn.textContent='🍓 取り置きを完了する';}
-});
-</script></body></html>
+
+/* ================================
+   予約情報取得
+================================ */
+
+const data=JSON.parse(
+  sessionStorage.getItem('ichigoReservation')||'null'
+);
+
+if(!data){
+  location.href='reserve.html';
+}
+
+
+/* ================================
+   送信
+================================ */
+
+document
+  .getElementById('messageForm')
+  .addEventListener('submit',async e=>{
+
+    e.preventDefault();
+
+    const selected=document.querySelector(
+      'input[name="oshi"]:checked'
+    );
+
+    if(!selected){
+      alert('推しを選択してください。');
+      return;
+    }
+
+    const oshi=selected.value;
+
+    const payload={
+      reservation:data,
+      message:document.getElementById('message').value,
+      oshi:oshi
+    };
+
+    console.log(
+      "ICHIGO POST START",
+      ENDPOINT,
+      payload
+    );
+
+    const btn=e.target.querySelector('button');
+
+    btn.disabled=true;
+    btn.textContent='送信中…';
+
+    try{
+
+      if(ENDPOINT){
+
+        await fetch(
+          ENDPOINT,
+          {
+            method:'POST',
+            mode:'no-cors',
+            headers:{
+              'Content-Type':
+                'text/plain;charset=utf-8'
+            },
+            body:JSON.stringify(payload)
+          }
+        );
+
+      }else{
+
+        console.log(
+          'DEMO PAYLOAD',
+          payload
+        );
+
+      }
+
+
+      /* ================================
+         完了画面
+      ================================ */
+
+      e.target.style.display='none';
+
+      document
+        .getElementById('done')
+        .style.display='block';
+
+
+      /* 選んだ推しを表示 */
+
+      document
+        .getElementById('voteMessage')
+        .textContent=
+          oshi+
+          'への一票、確かに受け取りました。🍓';
+
+
+      /* ================================
+         フルーツ演出
+      ================================ */
+
+      const fruits=[
+        '🍓','🍊','🍋','🍉',
+        '🍇','🍎','🍑','🍒',
+        '🍍','🥝','🫐','🍈'
+      ];
+
+      const box=
+        document.getElementById('fruits');
+
+      for(let i=0;i<55;i++){
+
+        const el=
+          document.createElement('span');
+
+        el.className='fruit';
+
+        el.textContent=
+          fruits[i%fruits.length];
+
+        el.style.setProperty(
+          '--x',
+          (Math.random()*100)+'%'
+        );
+
+        el.style.setProperty(
+          '--size',
+          (24+Math.random()*42)+'px'
+        );
+
+        el.style.setProperty(
+          '--dur',
+          (2.8+Math.random()*3.8)+'s'
+        );
+
+        el.style.setProperty(
+          '--delay',
+          (Math.random()*1.4)+'s'
+        );
+
+        el.style.setProperty(
+          '--rot',
+          (-45+Math.random()*90)+'deg'
+        );
+
+        box.appendChild(el);
+      }
+
+
+      /* 予約情報を消去 */
+
+      sessionStorage.removeItem(
+        'ichigoReservation'
+      );
+
+
+      /* ================================
+         最終演出
+      ================================ */
+
+      setTimeout(()=>{
+
+        const finale=
+          document.getElementById(
+            'punkFinale'
+          );
+
+        finale.classList.add('show');
+
+        finale.setAttribute(
+          'aria-hidden',
+          'false'
+        );
+
+      },2300);
+
+
+    }catch(err){
+
+      console.error(err);
+
+      alert(
+        '送信できませんでした。もう一度お試しください。'
+      );
+
+      btn.disabled=false;
+
+      btn.textContent=
+        '🍓 取り置きを完了する';
+
+    }
+
+  });
+
+</script>
+
+</body>
+</html>
+```
