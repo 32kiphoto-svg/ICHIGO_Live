@@ -1,0 +1,41 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ICHIGO — Ticket Step 1</title><style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@600;700&display=swap');
+:root{--ink:#102b20;--cream:#f5f0ce;--green:#0e6b3e;--lime:#a8d95b;--orange:#e86f2e;--paper:#fffdf0}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--cream);background:#071711;font-family:"DM Mono",monospace}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 15% 15%,#195d3c 0 2px,transparent 3px),radial-gradient(circle at 85% 70%,#2d7548 0 3px,transparent 4px),linear-gradient(125deg,#092118,#0b3324 48%,#06140f);background-size:140px 140px,180px 180px,auto}
+body:after{content:"";position:fixed;inset:-20%;z-index:-1;opacity:.13;background-image:repeating-linear-gradient(115deg,transparent 0 28px,#b4d873 29px 31px,transparent 32px 65px);transform:rotate(-8deg);pointer-events:none}
+.wrap{max-width:1050px;margin:auto;padding:22px}.nav{display:flex;justify-content:space-between;align-items:center}.logo{font-size:13px;letter-spacing:.12em}.mini{border:1px solid #a8d95b66;padding:9px 13px;border-radius:999px;font-size:11px;text-decoration:none}
+.hero{min-height:78vh;display:grid;grid-template-columns:1fr .78fr;align-items:center;gap:40px;padding:45px 0}.kicker{color:var(--orange);font-size:12px;letter-spacing:.14em}h1{font-family:"Shippori Mincho",serif;font-size:clamp(70px,12vw,145px);line-height:.78;letter-spacing:-.08em;margin:18px 0;color:var(--cream)}h1 span{display:block;color:var(--lime);font-size:.38em;letter-spacing:.03em;margin-top:25px}.copy{font-size:13px;line-height:1.9}.copy b{color:var(--lime)}.flyer{background:#111;padding:9px;transform:rotate(2deg);box-shadow:12px 15px #0008}.flyer img{width:100%;display:block}
+.cta{display:inline-block;margin-top:28px;padding:18px 24px;background:var(--orange);color:white;text-decoration:none;font-weight:bold;box-shadow:6px 6px var(--ink);transition:.15s}.cta:hover{transform:translate(3px,3px);box-shadow:2px 2px var(--ink)}
+.band{border-block:1px solid #a8d95b44;padding:12px;color:var(--lime);font-size:11px;overflow:hidden;white-space:nowrap}.band span{display:inline-block;animation:marq 18s linear infinite}@keyframes marq{to{transform:translateX(-50%)}}
+.panel{max-width:760px;margin:45px auto 100px;background:var(--cream);color:var(--ink);padding:44px 24px;clip-path:polygon(0 2%,100% 0,100% 98%,0 100%)}.inner{max-width:650px;margin:auto}.eyebrow{font-size:11px;color:var(--orange);font-weight:bold}.panel h2{font-family:"Shippori Mincho",serif;font-size:clamp(38px,7vw,66px);line-height:1;margin:9px 0 28px}.box{background:var(--paper);border:2px solid var(--ink);padding:25px;box-shadow:8px 8px var(--ink)}
+label{display:block;font-size:11px;font-weight:bold;margin:17px 0 7px}input,select,textarea{width:100%;padding:13px;border:1px solid #7a877e;background:white;font:inherit;color:var(--ink);border-radius:3px}textarea{min-height:130px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}.choice{display:flex;flex-wrap:wrap;gap:8px}.choice label{margin:0;border:1px solid #7a877e;padding:12px 13px;background:var(--paper);cursor:pointer}.choice input{width:auto}.choice label:has(input:checked){background:var(--green);color:var(--cream);border-color:var(--green)}
+.note{font-size:10px;line-height:1.75;opacity:.7;margin-top:18px}.next{width:100%;margin-top:24px;border:0;padding:17px;background:var(--orange);color:white;font:700 14px "DM Mono",monospace;cursor:pointer;box-shadow:5px 5px var(--ink)}.next:hover{transform:translate(3px,3px);box-shadow:2px 2px var(--ink)}
+.steps{font-size:10px;color:#657168;margin-bottom:20px}.summary{background:#102b20;color:var(--cream);padding:16px;line-height:1.8;font-size:11px}.summary b{color:var(--lime)}footer{text-align:center;font-size:10px;opacity:.65;padding:20px 0 70px}
+@media(max-width:720px){.hero{grid-template-columns:1fr;padding-top:35px}.flyer{max-width:500px;margin:auto}.row{grid-template-columns:1fr}.panel{margin-inline:-2px}}
+</style></head><body><div class="wrap">
+<header class="nav"><div class="logo">ICHIGO / TICKET RESERVATION</div><a class="mini" href="index.html">← TOP</a></header>
+<section class="panel"><div class="inner">
+<div class="steps">STEP 1 / 2　● YOUR INFO　○ MESSAGE & VOTE</div>
+<div class="eyebrow">2026.09.21 / KORIYAMA #9</div><h2>まずは、<br>あなたの名前を。</h2>
+<div class="box"><form id="reserveForm">
+<div class="row"><div><label>NAME / お名前 *</label><input id="name" required placeholder="山田 太郎"></div>
+<div><label>YOMIGANA / よみがな *</label><input id="kana" required placeholder="やまだ たろう"></div></div>
+<div class="row"><div><label>AGE / 年齢 *</label><input id="age" type="number" min="1" max="120" required placeholder="18"></div>
+<div><label>STUDENT / 学生ですか？ *</label><select id="student" required><option value="">選択してください</option><option>学生</option><option>一般</option></select></div></div>
+<label>TICKET / 枚数 *</label><select id="qty" required><option value="1">1枚</option><option value="2">2枚</option><option value="3">3枚</option><option value="4">4枚</option><option value="5">5枚</option><option value="6">6枚</option><option value="7">7枚</option><option value="8">8枚</option><option value="9">9枚</option><option value="10">10枚</option></select>
+<div class="summary" style="margin-top:20px">取り置き予定：<b id="price">¥2,000</b><br><small>※学生は次のページで学生料金 ¥1,000/枚として扱います。</small></div>
+<button class="next" type="submit">次へ → 応援メッセージ & 推し投票</button>
+<p class="note">※予約情報と「推し投票」は別々に扱います。推し投票は匿名集計できる設計です。</p>
+</form></div></div></section>
+<footer>ICHIGO / 9.21 MON / KORIYAMA #9</footer>
+</div><script>
+const q=document.getElementById('qty'),s=document.getElementById('student'),p=document.getElementById('price');
+function calc(){const n=+q.value;const unit=s.value==='学生（高校生以下）'?1000:2000;p.textContent='¥'+(n*unit).toLocaleString();}
+q.addEventListener('change',calc);s.addEventListener('change',calc);
+document.getElementById('reserveForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const data={name:document.getElementById('name').value,kana:document.getElementById('kana').value,age:document.getElementById('age').value,student:s.value,qty:q.value};
+ sessionStorage.setItem('ichigoReservation',JSON.stringify(data)); location.href='message.html';
+});
+</script></body></html>
